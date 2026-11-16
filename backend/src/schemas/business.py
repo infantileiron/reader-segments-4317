@@ -21,3 +21,13 @@ class OutreachInput(BaseModel):
  cluster_id:int=Field(ge=0,le=5)
  title:str=Field(min_length=2,max_length=100)
  note:str=Field(min_length=8,max_length=2000)
+class ExperimentInput(BaseModel):
+ segment_id:int=Field(gt=0)
+ outreach_ids:list[int]=Field(min_length=1,max_length=50)
+ title:str=Field(min_length=2,max_length=100)
+ note:str=Field(min_length=8,max_length=2000)
+class ReceiptItem(BaseModel):
+ event_id:str=Field(min_length=1,max_length=60)
+ code:str=Field(min_length=1,max_length=60)
+class ReceiptBatch(BaseModel):
+ receipts:list[ReceiptItem]=Field(min_length=1,max_length=5000)
